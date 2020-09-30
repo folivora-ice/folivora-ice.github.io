@@ -1,39 +1,223 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/1970/01/01/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>Linux常用命令</title>
     <url>/2020/09/21/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<h1 id="网络配置"><a href="#网络配置" class="headerlink" title="网络配置"></a>网络配置</h1><ul>
 <li><h2 id="防火墙配置"><a href="#防火墙配置" class="headerlink" title="防火墙配置"></a>防火墙配置</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> CentOS 启用防火墙</span></span><br><span class="line">firewall-cmd --enable </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> CentOS 开启、重启、关闭防火墙服务</span></span><br><span class="line">systemctl start firewalld</span><br><span class="line">systemctl restart firewalld</span><br><span class="line">systemctl stop firewalld</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> CentOS 临时开放端口, 注意不可以调用firewall-cmd --reload命令, 一旦调用将失效</span></span><br><span class="line">firewall-cmd --zone=public --add-port=9200/tcp</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> CentOS 永久开放端口</span></span><br><span class="line">firewall-cmd --zone=public --add-port=9200/tcp --permanent</span><br><span class="line">firewall-cmd --reload</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> CentOS 取消端口开放</span></span><br><span class="line">firewall-cmd --zone=public --remove-port=9200/tcp</span><br><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
 </li>
-<li><h2 id="网络连接设置"><a href="#网络连接设置" class="headerlink" title="网络连接设置"></a>网络连接设置</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># CentOS 启用网卡, 其中if-eth0为网卡</span><br><span class="line">vi &#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;if-eth0</span><br><span class="line"># 一般情况文件内容如下</span><br><span class="line"></span><br><span class="line"># 重启网络服务</span><br><span class="line">systemctl restart network</span><br></pre></td></tr></table></figure>
+<li><h2 id="网络连接设置"><a href="#网络连接设置" class="headerlink" title="网络连接设置"></a>网络连接设置</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># CentOS 启用网卡, 其中ifcfg-eth0为网卡</span><br><span class="line">vi &#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-eth0</span><br><span class="line">将ONBOOT&#x3D;no改为ONBOOT&#x3D;yes</span><br><span class="line"></span><br><span class="line"># 重启网络服务</span><br><span class="line">systemctl restart network</span><br></pre></td></tr></table></figure>
 </li>
 <li><h2 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 查询端口占用</span><br><span class="line">1. 使用 lsof: lsof -i:5000</span><br><span class="line">2. 使用 netstat: netstat -anlp | grep 5000</span><br></pre></td></tr></table></figure></li>
 </ul>
 ]]></content>
       <categories>
-        <category>Linux常用命令</category>
+        <category>Linux运维</category>
       </categories>
       <tags>
-        <tag>Linux运维</tag>
+        <tag>Linux常用命令</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Linux系统服务</title>
+    <url>/2020/09/30/Linux%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/</url>
+    <content><![CDATA[<h1 id="service命令"><a href="#service命令" class="headerlink" title="service命令"></a>service命令</h1><h2 id="service命令的使用"><a href="#service命令的使用" class="headerlink" title="service命令的使用"></a>service命令的使用</h2><p>Linux系统一般使用service命令来管理服务:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 启动服务</span></span><br><span class="line">service network start</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 停止服务</span></span><br><span class="line">service network stop</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 重启服务</span></span><br><span class="line">service network restart</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看服务状态</span></span><br><span class="line">service network status</span><br></pre></td></tr></table></figure>
+<h2 id="service原理"><a href="#service原理" class="headerlink" title="service原理"></a>service原理</h2><p>Linux系统的服务实际上是在后台运行的命令,通常一个程序想要作为系统服务运行,首先需要在/etc/init.d目录下存放一个与服务同名的文件,例如network服务,查看/etc/init.d/network文件,其简化后内容如下:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">case &quot;$1&quot; in</span><br><span class="line">start)</span><br><span class="line">    ;;</span><br><span class="line">stop)</span><br><span class="line">    ;;</span><br><span class="line">reload)</span><br><span class="line">    ;;</span><br><span class="line">force-reload|restart)</span><br><span class="line">    ;;</span><br><span class="line">*)</span><br><span class="line">    ;;</span><br><span class="line">esac</span><br><span class="line">exit 0</span><br></pre></td></tr></table></figure>
+<p>可见一个系统服务管理程序只要实现对命令行参数start|stop|restart等进行处理就可以被service命令管理,在使用service xxx cmd来管理服务时,其等价于执行/etc/init.d/xxx cmd</p>
+<blockquote>
+<p><em>注: /etc/init.d/xxx文件必须具有可执行权限</em></p>
+</blockquote>
+<h2 id="开机自启动"><a href="#开机自启动" class="headerlink" title="开机自启动"></a>开机自启动</h2><h3 id="chkconfig命令"><a href="#chkconfig命令" class="headerlink" title="chkconfig命令"></a>chkconfig命令</h3><p>在/etc/init.d下存放服务的管理文件只是可以让程序作为服务运行,一旦系统重启,就必须手动执行service xxx start来启动服务,大多数情况服务需要开机自启动,这时候就要用chkconfig命令:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 添加启动项</span></span><br><span class="line">chkconfig --add [command]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启用/禁用启动项</span></span><br><span class="line">chkconfig [command] on/off</span><br></pre></td></tr></table></figure>
+<p>需要注意的是,要使用chkconfig命令,文件首行必须是:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">chkconfig: 2345 10 90</span></span><br></pre></td></tr></table></figure>
+<p>其中2345表示运行级别,Linux系统有0~6七个运行级别(见:<a href="#linux%E8%BF%90%E8%A1%8C%E7%BA%A7%E5%88%AB">Linux运行级别</a>)<br>10表示启动优先级,数字越小优先级越高,越早被启动, 取值范围0~100<br>90表示退出优先级,数字越小优先级越高,越早被退出, 取值范围0~100</p>
+<h3 id="Linux运行级别"><a href="#Linux运行级别" class="headerlink" title="Linux运行级别"></a>Linux运行级别</h3><table>
+<thead>
+<tr>
+<th align="center">级别</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0</td>
+<td>停机,通常不用</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td>单用户模式,与Windows系统的安全模式类似</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td>多用户模式,但没有NFS支持</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td>完全多用户模式,支持NFS</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td>一般不用,在一些特殊情况下可以用它来做一些事情.例如在笔记本电脑的电池用尽时,可以切换到这个模式来做一些设置</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td>有网络支持有X-Window支持的多用户模式</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td>重新引导系统,即重启,运行命令init 6就会重启系统,不建议讲服务的运行级别设置为6</td>
+</tr>
+</tbody></table>
+<h3 id="rd-d目录"><a href="#rd-d目录" class="headerlink" title="rd*.d目录"></a>rd*.d目录</h3><p>事实上要让服务开机自启动,只需要在/etc/rc.d/rc*.d目录(Ubuntu等系统是在/etc/rd*.d目录)下根据一定规则创建/etc/init.d目录中服务文件的软连接即可,其中＊表示运行级别,如rc2.d目录中表示以运行级别2启动。<br>通常在rc*.d目录中有两种文件:</p>
+<ul>
+<li>以K开头的文件:在系统退出时被调用</li>
+<li>以S开头的文件:在系统启动时被调用</li>
+</ul>
+<p>这两种文件都是对/etc/init.d/目录中的服务文件的软链接,K/S后是相应服务名,与链接的服务文件一致</p>
+<blockquote>
+<p><strong><em>如果只是需要开机执行某些简单命令,可以直接在/etc/rc.d/rc.local文件中添加需要开机执行的命令</em></strong></p>
+</blockquote>
+<h1 id="Systemd"><a href="#Systemd" class="headerlink" title="Systemd"></a>Systemd</h1><p>过去Linux系统启动是采用init进程的,而init进程是串行化的,所以启动较慢,而且init进程只负责执行脚本,启动脚本需要自行处理各种异常情况,导致启动脚本常常很臃肿,为了解决这些问题,RedHat推出了Systemd初始化系统,其特点:</p>
+<ul>
+<li>系统引导时实现服务并行启动</li>
+<li>按需启动守护进程</li>
+<li>自动化的服务依赖关系管理</li>
+<li>同时采用socket式与D-Bus总线式激活服务</li>
+<li>系统状态快照和恢复</li>
+<li>利用Linux的cgroups监视进程</li>
+<li>维护挂载点和自动挂载点</li>
+<li>各服务间基于依赖关系进行精密控制</li>
+</ul>
+<h2 id="systemctl命令的使用"><a href="#systemctl命令的使用" class="headerlink" title="systemctl命令的使用"></a>systemctl命令的使用</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 重启系统</span></span><br><span class="line">sudo systemctl reboot</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 关闭系统,切断电源</span></span><br><span class="line">sudo systemctl poweroff</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> CPU停止工作</span></span><br><span class="line">sudo systemctl halt</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 暂停系统</span></span><br><span class="line">sudo systemctl suspend</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 让系统进入冬眠状态</span></span><br><span class="line">sudo systemctl hibernate</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 让系统进入交互式休眠状态</span></span><br><span class="line">sudo systemctl hybrid-sleep</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动进入救援状态（单用户状态）</span></span><br><span class="line">sudo systemctl rescue</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 服务开机自启动</span></span><br><span class="line">sudo systemctl enable xxx</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 禁用服务开机自启动</span></span><br><span class="line">sudo systemctl disable xxx</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动服务</span></span><br><span class="line">sudo systemctl start xxx</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 停止服务</span></span><br><span class="line">sudo systemctl start xxx</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 重启服务</span></span><br><span class="line">sudo systemctl restart xxx</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 杀死一个服务的所有子进程</span></span><br><span class="line">sudo systemctl kill apache.service</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 重新加载一个服务的配置文件</span></span><br><span class="line">sudo systemctl reload apache.service</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 重载所有修改过的配置文件</span></span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 显示某个 Unit 的所有底层参数</span></span><br><span class="line">systemctl show httpd.service</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 显示某个 Unit 的指定属性的值</span></span><br><span class="line">systemctl show -p CPUShares httpd.service</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置某个 Unit 的指定属性</span></span><br><span class="line">sudo systemctl set-property httpd.service CPUShares=500</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加系统服务"><a href="#添加系统服务" class="headerlink" title="添加系统服务"></a>添加系统服务</h2><p>Systemd可以管理所有系统资源,在Systemd中资源被统称为Unit。Unit一共分为12种:</p>
+<ul>
+<li>Service unit：系统服务</li>
+<li>Target unit：多个 Unit 构成的一个组</li>
+<li>Device Unit：硬件设备</li>
+<li>Mount Unit：文件系统的挂载点</li>
+<li>Automount Unit：自动挂载点</li>
+<li>Path Unit：文件或路径</li>
+<li>Scope Unit：不是由 Systemd 启动的外部进程</li>
+<li>Slice Unit：进程组</li>
+<li>Snapshot Unit：Systemd 快照,可以切回某个快照</li>
+<li>Socket Unit：进程间通信的 socket</li>
+<li>Swap Unit：swap 文件</li>
+<li>Timer Unit：定时器</li>
+</ul>
+<p>每一个Unit都有一个配置文件,告诉Systemd如何启动该Unit。默认情况下,Systemd从/etc/systemd/system读取配置文件,然而实际上该目录的文件均为/usr/lib/systemd/system目录中文件的软链接,systemctl enable用于在两个目录间建立符号链接,sytemctl diable则用于撤销链接关系。</p>
+<h3 id="Unit配置文件"><a href="#Unit配置文件" class="headerlink" title="Unit配置文件"></a>Unit配置文件</h3><p>以network服务的配置文件为例,其内容如下:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Raise network interfaces</span><br><span class="line">Documentation=man:interfaces(5)</span><br><span class="line">DefaultDependencies=no</span><br><span class="line">Wants=network.target</span><br><span class="line">After=local-fs.target network-pre.target apparmor.service systemd-sysctl.service systemd-modules-load.service</span><br><span class="line">Before=network.target shutdown.target network-online.target</span><br><span class="line">Conflicts=shutdown.target</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line">WantedBy=network-online.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=oneshot</span><br><span class="line">EnvironmentFile=-/etc/default/networking</span><br><span class="line">ExecStartPre=-/bin/sh -c &#x27;[ &quot;$CONFIGURE_INTERFACES&quot; != &quot;no&quot; ] &amp;&amp; [ -n &quot;$(ifquery --read-environment --list --exclude=lo)&quot; ] &amp;&amp; udevadm settle&#x27;</span><br><span class="line">ExecStart=/sbin/ifup -a --read-environment</span><br><span class="line">ExecStop=/sbin/ifdown -a --read-environment --exclude=lo</span><br><span class="line">RemainAfterExit=true</span><br><span class="line">TimeoutStartSec=5min</span><br></pre></td></tr></table></figure>
+<p>了解ini文件格式的话,不难发现Unit配置文件分为了三节(section):</p>
+<ul>
+<li><h4 id="Unit"><a href="#Unit" class="headerlink" title="Unit"></a>Unit</h4><p>[Unit]区块通常是配置文件的第一个区块,用来定义Unit的元数据,以及配置与其他Unit的关系。它的主要字段如下:</p>
+<ul>
+<li>Description：简短描述</li>
+<li>Documentation：文档地址</li>
+<li>Requires：当前 Unit 依赖的其他 Unit,如果它们没有运行,当前 Unit 会启动失败</li>
+<li>Wants：与当前 Unit 配合的其他 Unit,如果它们没有运行,当前 Unit 不会启动失败</li>
+<li>BindsTo：与Requires类似,它指定的 Unit 如果退出,会导致当前 Unit 停止运行</li>
+<li>Before：如果该字段指定的 Unit 也要启动,那么必须在当前 Unit 之后启动</li>
+<li>After：如果该字段指定的 Unit 也要启动,那么必须在当前 Unit 之前启动</li>
+<li>Conflicts：这里指定的 Unit 不能与当前 Unit 同时运行</li>
+<li>Condition…：当前 Unit 运行必须满足的条件,否则不会运行</li>
+<li>Assert…：当前 Unit 运行必须满足的条件,否则会报启动失败</li>
+</ul>
+</li>
+<li><h4 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h4><p>[Install]通常是配置文件的最后一个区块,用来定义如何启动,以及是否开机启动。它的主要字段如下:</p>
+<ul>
+<li>WantedBy：它的值是一个或多个 Target,当前 Unit 激活时（enable）符号链接会放入/etc/systemd/system目录下面以 Target 名 + .wants后缀构成的子目录中</li>
+<li>RequiredBy：它的值是一个或多个 Target,当前 Unit 激活时,符号链接会放入/etc/systemd/system目录下面以 Target 名 + .required后缀构成的子目录中</li>
+<li>Alias：当前 Unit 可用于启动的别名</li>
+<li>Also：当前 Unit 激活（enable）时,会被同时激活的其他 Unit</li>
+</ul>
+</li>
+<li><h4 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h4><p>[Service]区块是Service 的配置,只有 Service 类型的 Unit 才有这个区块。它的主要字段如下:</p>
+<ul>
+<li>Type：定义启动时的进程行为。它有以下几种值。<ul>
+<li>simple：默认值,执行ExecStart指定的命令,启动主进程</li>
+<li>forking：以 fork 方式从父进程创建子进程,创建后父进程会立即退出</li>
+<li>oneshot：一次性进程,Systemd 会等当前服务退出,再继续往下执行</li>
+<li>dbus：当前服务通过D-Bus启动</li>
+<li>notify：当前服务启动完毕,会通知Systemd,再继续往下执行</li>
+<li>idle：若有其他任务执行完毕,当前服务才会运行</li>
+</ul>
+</li>
+<li>ExecStart：启动当前服务的命令,命令必须使用绝对路径,如:/bin/sh /path/to/xxx.sh</li>
+<li>ExecStartPre：启动当前服务之前执行的命令,命令必须使用绝对路径</li>
+<li>ExecStartPost：启动当前服务之后执行的命令,命令必须使用绝对路径</li>
+<li>ExecReload：重启当前服务时执行的命令,命令必须使用绝对路径</li>
+<li>ExecStop：停止当前服务时执行的命令,命令必须使用绝对路径</li>
+<li>ExecStopPost：停止当前服务之后执行的命令,命令必须使用绝对路径</li>
+<li>RestartSec：自动重启当前服务间隔的秒数</li>
+<li>Restart：定义何种情况 Systemd 会自动重启当前服务,可能的值包括always（总是重启）、on-success、on-failure、on-abnormal、on-abort、on-watchdog</li>
+<li>TimeoutSec：定义 Systemd 停止当前服务之前等待的秒数</li>
+<li>Environment：指定环境变量</li>
+</ul>
+</li>
+</ul>
+<p>Unit 配置文件的完整字段清单,请参考<a href="https://www.freedesktop.org/software/systemd/man/systemd.unit.html">官方文档</a>。</p>
+<h3 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h3><p>启动计算机的时候,需要启动大量的 Unit。如果每一次启动,都要一一写明本次启动需要哪些 Unit,显然非常不方便。Systemd 的解决方案就是 Target。<br>简单说,Target 就是一个 Unit 组,包含许多相关的 Unit 。启动某个 Target 的时候,Systemd 就会启动里面所有的 Unit。从这个意义上说,Target 这个概念类似于 “状态点”,启动某个Target就好比启动到某种状态。<br>传统的init启动模式里面,有 RunLevel 的概念,跟 Target 的作用很类似。不同的是,RunLevel 是互斥的,不可能多个 RunLevel 同时启动,但是多个 Target 可以同时启动。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看当前系统的所有 Target</span></span><br><span class="line">systemctl list-unit-files --type=target</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看一个 Target 包含的所有 Unit</span></span><br><span class="line">systemctl list-dependencies multi-user.target</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看启动时的默认 Target</span></span><br><span class="line">systemctl get-default</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置启动时的默认 Target</span></span><br><span class="line">sudo systemctl set-default multi-user.target</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 切换 Target 时,默认不关闭前一个 Target 启动的进程,</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> systemctl isolate 命令改变这种行为,</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 关闭前一个 Target 里面所有不属于后一个 Target 的进程</span></span><br><span class="line">sudo systemctl isolate multi-user.target</span><br></pre></td></tr></table></figure>
+<p>Target 与 传统 RunLevel 的对应关系如下。</p>
+<table>
+<thead>
+<tr>
+<th>Traditional runlevel</th>
+<th>New target name</th>
+<th>Symbolically linked to…</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>runlevel0.target</td>
+<td>poweroff.target</td>
+</tr>
+<tr>
+<td>1</td>
+<td>runlevel1.target</td>
+<td>rescue.target</td>
+</tr>
+<tr>
+<td>2</td>
+<td>runlevel2.target</td>
+<td>multi-user.target</td>
+</tr>
+<tr>
+<td>3</td>
+<td>runlevel3.target</td>
+<td>multi-user.target</td>
+</tr>
+<tr>
+<td>4</td>
+<td>runlevel4.target</td>
+<td>multi-user.target</td>
+</tr>
+<tr>
+<td>5</td>
+<td>runlevel5.target</td>
+<td>graphical.target</td>
+</tr>
+<tr>
+<td>6</td>
+<td>runlevel6.target</td>
+<td>reboot.target</td>
+</tr>
+</tbody></table>
+<p>它与init进程的主要差别如下:</p>
+<ol>
+<li>默认的 RunLevel(在/etc/inittab文件设置)现在被默认的 Target 取代,位置是/etc/systemd/system/default.target,通常符号链接到graphical.target(图形界面)或者multi-user.target(多用户命令行)。</li>
+<li>启动脚本的位置,以前是/etc/init.d目录,符号链接到不同的 RunLevel 目录 (比如/etc/rc3.d、/etc/rc5.d等),现在则存放在/lib/systemd/system和/etc/systemd/system目录。</li>
+<li>配置文件的位置,以前init进程的配置文件是/etc/inittab,各种服务的配置文件存放在/etc/sysconfig目录。现在的配置文件主要存放在/lib/systemd目录,在/etc/systemd目录里面的修改可以覆盖原始设置。</li>
+</ol>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>假设当前在/opt目录下有可执行程序demo,其用于定时从Wallpaper网站抓取一张壁纸并替换当前壁纸,我们想要开机自动执行它,首先在/usr/lib/systemd/system/目录创建demo.service文件,根据上面的说明,其内容如下:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=demo service</span><br><span class="line"><span class="meta">#</span><span class="bash"> 强依赖网络服务</span></span><br><span class="line">Requires=network-online.target</span><br><span class="line">BindsTo=network.target</span><br><span class="line">After=network.target</span><br><span class="line">[Install]</span><br><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line">ExecStart=/opt/demo</span><br><span class="line">ExecStart=/usr/bin/kill -9 $(/usr/bin/ps aux | grep demo | awk &#x27;&#123;print $2&#125;&#x27;) &amp;&amp; /opt/demo</span><br><span class="line">EXECStop=/usr/bin/kill -9 $(/usr/bin/ps aux | grep demo | awk &#x27;&#123;print $2&#125;&#x27;)</span><br><span class="line">Restart=on-failure</span><br></pre></td></tr></table></figure>
+<p>写好demo.service文件后,需要执行 systemctl daemon-reload命令来重新加载所有配置文件,然后执行systemctl enable demo命令,这样下次开机时demo程序就会自动执行。</p>
+]]></content>
+      <categories>
+        <category>Linux运维</category>
+      </categories>
   </entry>
 </search>
